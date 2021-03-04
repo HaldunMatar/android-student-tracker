@@ -15,4 +15,9 @@
         android:name="com.haldun.android.student.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/studentDetailsFragment"
+        android:name="com.haldun.android.student.studentdetails.StudentDetailsFragment"
+        android:label="fragment_student_details"
+        tools:layout="@layout/fragment_student_details" />
 </navigation>

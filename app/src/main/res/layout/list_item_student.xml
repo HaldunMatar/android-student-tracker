@@ -26,23 +26,24 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
 
-            android:background="#E42B2B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@android:drawable/star_big_on" />
+
+            app:studentImage="@{student}"
+            tools:srcCompat="@drawable/ic_sleep_5" />
+            />
 
         <TextView
             android:id="@+id/quality_string"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="@{}"
+
             android:text="@{student.studentName}"
             app:layout_constraintEnd_toEndOf="@+id/quality_image"
-            app:layout_constraintStart_toStartOf="@+id/quality_image"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quality_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
