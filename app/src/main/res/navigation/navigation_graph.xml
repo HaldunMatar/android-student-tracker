@@ -9,7 +9,11 @@
         android:id="@+id/studentTrackerFragment"
         android:name="com.haldun.android.student.studentTracker.StudentTrackerFragment"
         android:label="student_tracker_fragment"
-        tools:layout="@layout/student_tracker_fragment" />
+        tools:layout="@layout/student_tracker_fragment" >
+        <action
+            android:id="@+id/action_studentTrackerFragment_to_studentDetailsFragment"
+            app:destination="@id/studentDetailsFragment" />
+    </fragment>
     <activity
         android:id="@+id/mainActivity"
         android:name="com.haldun.android.student.MainActivity"
@@ -19,5 +23,11 @@
         android:id="@+id/studentDetailsFragment"
         android:name="com.haldun.android.student.studentdetails.StudentDetailsFragment"
         android:label="fragment_student_details"
-        tools:layout="@layout/fragment_student_details" />
+        tools:layout="@layout/fragment_student_details" >
+        <action
+            android:id="@+id/action_studentDetailsFragment_to_studentTrackerFragment"
+            app:destination="@id/studentTrackerFragment"
+            app:launchSingleTop="false"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

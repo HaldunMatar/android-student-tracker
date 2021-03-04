@@ -19,6 +19,10 @@ fun ImageView.setSleepImage(item: Student?) {
             item.studentId % 10 -> R.drawable.ic_sleep_3
             item.studentId % 10 -> R.drawable.ic_sleep_4
             item.studentId % 10 -> R.drawable.ic_sleep_5
+            item.studentId % 10 -> R.drawable.ic_sleep_2
+            item.studentId % 10 -> R.drawable.ic_sleep_3
+            item.studentId % 10 -> R.drawable.ic_sleep_4
+
             else -> R.drawable.ic_sleep_active
         })
     }

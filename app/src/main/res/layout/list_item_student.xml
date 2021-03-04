@@ -9,14 +9,19 @@
         <variable
             name="student"
             type="com.haldun.android.student.database.Student" />
-
+        <variable
+            name="clickListener"
+            type="com.haldun.android.student.studentTracker.StudentListener" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="@{() -> clickListener.onClick(student)}"
+
+        >
 
         <ImageView
             android:id="@+id/quality_image"

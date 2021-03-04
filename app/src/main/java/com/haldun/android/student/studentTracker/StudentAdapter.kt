@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.haldun.android.student.databinding.ListItemStudentBinding
 
 
-class StudentAdapter : ListAdapter<Student,
-        StudentAdapter.ViewHolder>(SleepNightDiffCallback()) {
+class StudentAdapter(val clickListener: StudentListener) : ListAdapter<Student,
+        StudentAdapter.ViewHolder>(   SleepNightDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
+        holder.bind(clickListener, item)
 
-        holder.bind(item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,10 +30,13 @@ class StudentAdapter : ListAdapter<Student,
     class ViewHolder private constructor(val binding: ListItemStudentBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Student) {
+        fun bind(clickListener: StudentListener,item: Student) {
             binding.student = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
+
+
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
@@ -56,4 +59,9 @@ class SleepNightDiffCallback : DiffUtil.ItemCallback<Student>() {
     override fun areContentsTheSame(oldItem: Student, newItem: Student): Boolean {
         return oldItem == newItem
     }
+}
+
+class StudentListener(val clickListener: (sleepId: Long) -> Unit) {
+
+    fun onClick(student: Student) = clickListener(student.studentId)
 }

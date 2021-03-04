@@ -2,6 +2,7 @@ package com.haldun.android.student.studentTracker
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.haldun.android.student.database.Student
@@ -28,6 +29,28 @@ class StudentTrackerViewModel(val database: StudentDatabaseDao, application: App
             database.insert(night)
         }
     }
+
+
+    private val _navigateToStudentQuality = MutableLiveData<Student>()
+    val navigateToStudentQuality: LiveData<Student>
+        get() = _navigateToStudentQuality
+
+    fun doneNavigating() {
+        _navigateToStudentQuality.value = null
+    }
+
+    private val _navigateToStudentDataQuality = MutableLiveData<Long>()
+    val navigateToStudentDataQuality
+        get() = _navigateToStudentDataQuality
+
+    fun onStudentClicked(id: Long) {
+        _navigateToStudentDataQuality.value = id
+    }
+
+    fun onStudentDataQualityNavigated() {
+        _navigateToStudentDataQuality.value = null
+    }
+
 
 
 
