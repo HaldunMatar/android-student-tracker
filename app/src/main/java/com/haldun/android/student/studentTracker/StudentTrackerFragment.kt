@@ -2,6 +2,7 @@ package com.haldun.android.student.studentTracker
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,8 +31,16 @@ class StudentTrackerFragment : Fragment() {
                 this, viewModelFactory).get(StudentTrackerViewModel::class.java)
         binding.studentTrackerViewModel = sleepTrackerViewModel
         binding.lifecycleOwner = this
-        val manager = GridLayoutManager(activity, 3)
-        binding.studentList.layoutManager = manager
+        binding.startButton.setOnClickListener {
+            Log.i("startButton","startButton")
+
+
+           this.findNavController().
+           navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToStudentInfoFragment())
+
+        }
+      //  val manager = GridLayoutManager(activity, 3)
+      //  binding.studentList.layoutManager = manager
         val adapter = StudentAdapter( StudentListener {
             sleepTrackerViewModel.onStudentClicked(it)
         })
@@ -42,8 +51,6 @@ class StudentTrackerFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
-
-
 
         sleepTrackerViewModel.navigateToStudentDataQuality.observe(viewLifecycleOwner, Observer { night ->
             night?.let {

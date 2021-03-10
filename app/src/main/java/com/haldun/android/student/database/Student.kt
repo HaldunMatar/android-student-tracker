@@ -7,14 +7,14 @@ import androidx.room.PrimaryKey
 @Entity(tableName ="Student_table" )
 data class Student(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "Student_id")
+    @ColumnInfo(name = "student_id")
     var studentId:Long=0L ,
         @ColumnInfo(name = "student_name")
-     var studentName  : String ="test student name"  ,
+     var studentName  : String ="" ,
     @ColumnInfo(name = "student_grade")
-    var studentGrade  : String  = "10" ,
+    var studentGrade  : String  = "" ,
     @ColumnInfo(name = "student_sub_grade")
-    var studentSubGrade  : String ="B" ,
+    var studentSubGrade  : String ="" ,
 
     @ColumnInfo(name = "student_start_time")
     val studentStartTime: Long = System.currentTimeMillis(),

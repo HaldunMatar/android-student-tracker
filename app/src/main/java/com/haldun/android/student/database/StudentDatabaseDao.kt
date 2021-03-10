@@ -20,5 +20,7 @@ interface StudentDatabaseDao {
     @Query("SELECT * FROM student_table ORDER BY Student_id DESC")
     fun getAllStudents(): LiveData<List<Student>>
 
+    @Query("SELECT * FROM student_table ORDER BY Student_id DESC LIMIT 1")
+      suspend fun getToStudent(): Student?
 
 }

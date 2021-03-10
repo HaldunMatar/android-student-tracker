@@ -73,8 +73,11 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
 
 
+    implementation 'com.google.android.material:material:<version>'
 
 
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    testImplementation 'junit:junit:4.12'
 }
 kapt {
     generateStubs = true

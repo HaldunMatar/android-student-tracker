@@ -1,0 +1,19 @@
+  android:text="@={detailsModel.ValueEvl}"
+///////////////////////////
+<data>
+    <variable
+        name="detailsModel"
+        type="com.haldun.android.student.studentdetails.studentDetailsViewModel"
+
+
+        />
+
+
+</data>
+////////////////////////////
+       
+       
+    android:checked="@={viewmodel.valueEvl}"      
+       
+       
+ android:onClick="@{() -> viewmodel.studentEvaluation(5)}"

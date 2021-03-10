@@ -16,40 +16,71 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="vertical"
-        android:onClick="@{() -> clickListener.onClick(student)}"
 
-        >
+        ><![CDATA[
 
-        <ImageView
-            android:id="@+id/quality_image"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
 
+        />
+
+
+
+
+
+
+
+
+
+        ]]>
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="24dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="16dp"
+            android:text="CheckBox"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
-            app:studentImage="@{student}"
-            tools:srcCompat="@drawable/ic_sleep_5" />
-            />
+            app:layout_constraintVertical_bias="0.49" />
 
         <TextView
             android:id="@+id/quality_string"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_width="179dp"
+            android:layout_height="47dp"
 
-            android:text="@{student.studentName}"
-            app:layout_constraintEnd_toEndOf="@+id/quality_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quality_image" />
+            android:layout_marginEnd="12dp"
+            android:onClick="@{() -> clickListener.onClick(student)}"
+            android:text="@{student.studentName   +  student.studentId }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/quality_image"
+            android:layout_width="91dp"
+            android:layout_height="75dp"
+
+            android:layout_marginEnd="20dp"
+            android:onClick="@{() -> clickListener.onClick(student)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/quality_string"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:studentImage="@{student}"
+            tools:srcCompat="@drawable/ic_sleep_5" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="53dp"
+            android:layout_height="47dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_sleep_active" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

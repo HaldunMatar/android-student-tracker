@@ -6,10 +6,25 @@ xmlns:tools="http://schemas.android.com/tools">
 <!-- Data to make available to the XML via data binding. In this case,
  the whole ViewModel, so that we can access the LiveData,
  click handlers, and state variables. -->
-<data>
 
 
-</data>
+
+    <data>
+
+        <variable
+
+
+
+            name="viewmodel"
+            type="com.haldun.android.student.studentdetails.StudentDetailsViewModel" />
+
+        <variable
+            name="rate"
+            type="com.haldun.android.student.database.Rate" />
+
+    </data>
+
+
 
 <!-- Start of the visible fragment layout using ConstraintLayout -->
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,30 +32,18 @@ xmlns:tools="http://schemas.android.com/tools">
     android:layout_height="match_parent"
     tools:context=".sleepquality.SleepQualityFragment">
 
-    <TextView
-        android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:layout_marginBottom="@dimen/triple_margin"
-
-        android:text="title_text"
-        android:textSize="@dimen/title_text_size"
-        app:layout_constraintBottom_toTopOf="@+id/quality_zero_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/quality_zero_image"
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
+        android:layout_marginTop="44dp"
         android:contentDescription="quality_zero_image"
+
         app:layout_constraintEnd_toStartOf="@+id/quality_one_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_text"
+        app:layout_constraintTop_toTopOf="parent"
+
         app:srcCompat="@drawable/ic_sleep_0" />
 
     <ImageView
@@ -107,15 +110,48 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintTop_toTopOf="@+id/quality_four_image"
         app:srcCompat="@drawable/ic_sleep_5" />
 
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/label"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+
+
+        app:layout_constraintBottom_toTopOf="@+id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quality_four_image"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@={rate.rateDes}"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
     <Button
         android:id="@+id/backButton"
+        style="@style/StudentButtons"
         android:layout_width="177dp"
         android:layout_height="34dp"
         android:text="Button"
+
+        android:onClick="@{() -> viewmodel.studentEvaluation(rate)}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quality_four_image" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
