@@ -46,7 +46,8 @@ class StudentInfoFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = StudentDatabase.getInstance(application).studentDatabaseDao
-        //val args = ItemDetailFragmentArgs.fromBundle(requireArguments())
+
+
         val viewModelFactory = StudentInfoViewModelFactory(10,dataSource)
         val studentInfoViewModel =
                 ViewModelProviders.of(

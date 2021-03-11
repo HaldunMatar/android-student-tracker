@@ -34,8 +34,8 @@ class StudentInfoViewMode(
     private suspend fun insert(night: Student) {
         withContext(Dispatchers.IO) {
             database.insert(night)
-
         }
+
     }
 
     private fun getToStudent() {

@@ -43,7 +43,7 @@ class StudentTrackerViewModel(val database: StudentDatabaseDao, application: App
     val navigateToStudentDataQuality
         get() = _navigateToStudentDataQuality
 
-    fun onStudentClicked(id: Long) {
+    fun onStudentEvaluateClicked(id: Long) {
         _navigateToStudentDataQuality.value = id
     }
 

@@ -47,7 +47,7 @@
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
             android:text="stop"
-
+            android:onClick="@{() -> studentTrackerViewModel.onStudentEvaluateClicked(0)}"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/start_button"

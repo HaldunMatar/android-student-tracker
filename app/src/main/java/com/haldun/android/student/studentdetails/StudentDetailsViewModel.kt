@@ -4,13 +4,19 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.haldun.android.student.database.Rate
+import com.haldun.android.student.database.RateDatabaseDao
+import com.haldun.android.student.database.Student
 
-class StudentDetailsViewModel(application: Application) : AndroidViewModel(application)
+class StudentDetailsViewModel(val studentId:Long,dataSource : RateDatabaseDao , application: Application) :
+    AndroidViewModel(application)
 {
 
-    var  note : String = "";
-    var valueEvl : Int = 0
-    var rateM = Rate()
+
+
+    var rate = MutableLiveData<Rate?>()
+    init {
+        rate.value= Rate()
+    }
 
 
     private val _navigateToStudentTracker = MutableLiveData<Boolean?>()
@@ -26,7 +32,13 @@ class StudentDetailsViewModel(application: Application) : AndroidViewModel(appli
 
 
 
+    fun onSetStudentQuality(rateValue : Int){
+        rate.value?.rateValue = rateValue
+        rate.value?.rateStudentId = this.studentId
+        Log.i("studentDetailsViewModel" ,"rate int  = "+  rate.value.toString())
 
+        _navigateToStudentTracker.value =true
+    }
 
 
  fun  studentEvaluation(rate : Rate  ) {

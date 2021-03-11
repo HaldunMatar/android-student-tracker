@@ -31,7 +31,11 @@
             android:id="@+id/action_studentDetailsFragment_to_studentTrackerFragment"
             app:destination="@id/studentTrackerFragment"
             app:launchSingleTop="false"
+            app:popUpTo="@id/studentTrackerFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="studentKey"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/studentInfoFragment"

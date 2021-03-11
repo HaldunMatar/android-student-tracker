@@ -11,8 +11,15 @@ data @Entity(tableName = "rate_table")
   @ColumnInfo(name = "rate_id")
   var rateId:Long=0L ,
   @ColumnInfo(name = "rate_value")
-  var rateValue:Int  ,
+  var rateValue:Int=0  ,
 
   @ColumnInfo(name = "rate_des")
-  var rateDes:String ="des = "+ rateId.toString() ,
-)
+  var rateDes:String ="des = " ,
+
+  @ColumnInfo(name = "rate_student_id")
+  var rateStudentId:Long=0 ,
+){
+
+
+
+ }

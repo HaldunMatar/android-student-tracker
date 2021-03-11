@@ -42,7 +42,7 @@ class StudentTrackerFragment : Fragment() {
       //  val manager = GridLayoutManager(activity, 3)
       //  binding.studentList.layoutManager = manager
         val adapter = StudentAdapter( StudentListener {
-            sleepTrackerViewModel.onStudentClicked(it)
+            sleepTrackerViewModel.onStudentEvaluateClicked(it)
         })
         binding.studentList.adapter = adapter
         sleepTrackerViewModel.students.observe(viewLifecycleOwner, Observer {
@@ -54,7 +54,7 @@ class StudentTrackerFragment : Fragment() {
 
         sleepTrackerViewModel.navigateToStudentDataQuality.observe(viewLifecycleOwner, Observer { night ->
             night?.let {
-               this.findNavController().navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToStudentDetailsFragment())
+               this.findNavController().navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToStudentDetailsFragment(it))
 
                 sleepTrackerViewModel.onStudentDataQualityNavigated()
             }

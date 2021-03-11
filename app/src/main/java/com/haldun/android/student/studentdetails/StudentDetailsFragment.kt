@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.haldun.android.student.R
 import com.haldun.android.student.database.Rate
+import com.haldun.android.student.database.StudentDatabase
 import com.haldun.android.student.databinding.FragmentStudentDetailsBinding
+import com.haldun.android.student.studentInfo.StudentInfoViewMode
 
 
 class StudentDetailsFragment : Fragment() {
@@ -32,12 +36,22 @@ class StudentDetailsFragment : Fragment() {
         val binding: FragmentStudentDetailsBinding  = DataBindingUtil.inflate(
             inflater, R.layout.fragment_student_details, container, false)
 
-     val viewModel = ViewModelProvider(this).get(StudentDetailsViewModel::class.java)
+
+
+         val args = StudentDetailsFragmentArgs.fromBundle(requireArguments())
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = StudentDatabase.getInstance(application).rateDatabaseDao
+
+        val viewModelFactory = StudentDetailsViewModelFactory(args.studentKey, dataSource,application)
+
+       val viewModel = ViewModelProviders.of(this,viewModelFactory).get(StudentDetailsViewModel::class.java)
+
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
         // data in the VieWModel
         binding.viewmodel = viewModel
-        binding.rate=Rate()
+        binding.rate=Rate(rateStudentId = args.studentKey);
         binding.backButton.setOnClickListener {
 
             this.findNavController().navigate(StudentDetailsFragmentDirections.actionStudentDetailsFragmentToStudentTrackerFragment())
