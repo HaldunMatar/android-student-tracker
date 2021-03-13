@@ -54,7 +54,7 @@
 
             android:layout_marginEnd="12dp"
             android:onClick="@{() -> clickListener.onClick(student)}"
-            android:text="@{student.studentName   +  student.studentId }"
+            android:text="@{student.studentName   +    student.studentGrade+  student.studentSubGrade }"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:studentImage="@{student}"
-            tools:srcCompat="@drawable/ic_sleep_5" />
+            tools:srcCompat="@drawable/ic_sleep_active" />
 
         <ImageView
             android:id="@+id/imageView"
