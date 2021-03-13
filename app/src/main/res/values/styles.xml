@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+
 <resources>
 
     <!-- Base application theme. -->
@@ -9,7 +11,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
+    <!-- Basic styling for the buttons. -->
     <style name="StudentButtons" parent="Widget.AppCompat.Button.Colored">
         <item name="android:textColor">@color/white_text_color</item>
         <item name="colorAccent">@color/green_color</item>
@@ -18,3 +20,5 @@
     </style>
 
 </resources>
+
+
