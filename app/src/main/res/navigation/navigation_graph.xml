@@ -16,6 +16,10 @@
         <action
             android:id="@+id/action_studentTrackerFragment_to_studentInfoFragment"
             app:destination="@id/studentInfoFragment" />
+        <action
+            android:id="@+id/action_studentTrackerFragment_to_evaluationTrackerFragment"
+            app:destination="@id/evaluationTrackerFragment"
+            app:popUpTo="@id/studentTrackerFragment" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
@@ -46,4 +50,9 @@
             android:id="@+id/action_studentInfoFragment_to_studentTrackerFragment"
             app:destination="@id/studentTrackerFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/evaluationTrackerFragment"
+        android:name="com.haldun.android.student.evaluationtracker.EvaluationTrackerFragment"
+        android:label="fragment_evaluation_tracker"
+        tools:layout="@layout/fragment_evaluation_tracker" />
 </navigation>

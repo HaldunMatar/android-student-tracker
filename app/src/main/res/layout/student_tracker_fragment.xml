@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
 
-            android:text="start"
+            android:text="New student"
             app:layout_constraintBaseline_toBaselineOf="@id/stop_button"
             app:layout_constraintEnd_toStartOf="@+id/stop_button"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -46,8 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
-            android:text="stop"
-            android:onClick="@{() -> studentTrackerViewModel.onStudentEvaluateClicked(0)}"
+
+            android:text="Evaluate student"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/start_button"

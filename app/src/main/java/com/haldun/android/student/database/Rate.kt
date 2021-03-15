@@ -18,6 +18,9 @@ data @Entity(tableName = "rate_table")
 
   @ColumnInfo(name = "rate_student_id")
   var rateStudentId:Long=0 ,
+
+  @ColumnInfo(name = "rate_start_time")
+  val rateTime: Long = System.currentTimeMillis(),
 ){
 
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <data>
+
+            <variable
+                name="rate"
+                type="com.haldun.android.student.database.Rate" />
+            <variable
+                name="clickListener"
+                type="com.haldun.android.student.evaluationtracker.RateListener" />
+
+        </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="91dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.033"
+
+            app:studentImageRate="@{rate}"
+            tools:srcCompat="@drawable/ic_sleep_active"
+
+
+            />
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/desRateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="desRateView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/dateRateView"
+            app:layout_constraintEnd_toStartOf="@+id/IdRateView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/dateRateView" />
+
+        <TextView
+            android:id="@+id/dateRateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/desRateView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/IdRateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/desRateView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/desRateView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

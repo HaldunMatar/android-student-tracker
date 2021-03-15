@@ -6,8 +6,11 @@ import androidx.lifecycle.*
 import com.haldun.android.student.database.Rate
 import com.haldun.android.student.database.RateDatabaseDao
 import com.haldun.android.student.database.Student
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class StudentDetailsViewModel(val studentId:Long,dataSource : RateDatabaseDao , application: Application) :
+class StudentDetailsViewModel(val studentId:Long, val dataSource : RateDatabaseDao , application: Application) :
     AndroidViewModel(application)
 {
 
@@ -36,13 +39,43 @@ class StudentDetailsViewModel(val studentId:Long,dataSource : RateDatabaseDao , 
         rate.value?.rateValue = rateValue
         rate.value?.rateStudentId = this.studentId
         Log.i("studentDetailsViewModel" ,"rate int  = "+  rate.value.toString())
-
+        rate.value?.let { onInsert(it) }
         _navigateToStudentTracker.value =true
     }
 
 
- fun  studentEvaluation(rate : Rate  ) {
+
+    fun onInsert( rate :  Rate ) {
+        viewModelScope.launch {
+
+            Log.i("evaluatiowModel","onInsert")
+             insert(rate)
+
+
+
+        }
+    }
+
+    private suspend fun insert(rate: Rate) {
+        withContext(Dispatchers.IO) {
+            dataSource.insert(rate)
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+    fun  studentEvaluation(rate : Rate  ) {
        Log.i("studentDetailsViewModel" ,"rate = "+  rate.toString())
+
+
+
          _navigateToStudentTracker.value =true
 
     }

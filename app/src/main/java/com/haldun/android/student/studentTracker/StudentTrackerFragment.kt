@@ -39,6 +39,15 @@ class StudentTrackerFragment : Fragment() {
            navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToStudentInfoFragment())
 
         }
+
+        binding.stopButton.setOnClickListener {
+
+            this.findNavController().
+            navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToEvaluationTrackerFragment())
+
+        }
+
+
       //  val manager = GridLayoutManager(activity, 3)
       //  binding.studentList.layoutManager = manager
         val adapter = StudentAdapter( StudentListener {
