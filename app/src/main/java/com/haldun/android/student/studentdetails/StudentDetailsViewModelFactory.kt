@@ -9,13 +9,14 @@ import com.haldun.android.student.database.RateDatabaseDao
 
 class StudentDetailsViewModelFactory (
     private val studntKey: Long,
+    private val  stringKeys : String  ,
     private val dataSource: RateDatabaseDao,
     private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("uncheecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(StudentDetailsViewModel::class.java)) {
-            return StudentDetailsViewModel(studntKey, dataSource,application) as T
+            return StudentDetailsViewModel(studntKey,stringKeys ,dataSource,application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

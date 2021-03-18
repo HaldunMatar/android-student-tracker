@@ -10,15 +10,25 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class StudentDetailsViewModel(val studentId:Long, val dataSource : RateDatabaseDao , application: Application) :
+class StudentDetailsViewModel
+(val studentId:Long, val  stringKeys : String  ,val dataSource : RateDatabaseDao , application: Application) :
     AndroidViewModel(application)
 {
 
-
-
+    private lateinit var  ListKeys: List<String>
     var rate = MutableLiveData<Rate?>()
     init {
         rate.value= Rate()
+         ListKeys =  stringKeys.split(",").map{
+             it.trim()
+         }
+
+
+        ListKeys.forEach {
+
+            Log.i("stringKey",it.toString())
+
+        }
     }
 
 
@@ -33,7 +43,20 @@ class StudentDetailsViewModel(val studentId:Long, val dataSource : RateDatabaseD
 
     }
 
+    fun onSetStudentsQuality(rateValue : Int){
 
+
+        ListKeys.forEach {
+
+            rate.value?.rateValue = rateValue
+            rate.value?.rateStudentId = it.toLong()
+            Log.i("studentDetailsViewModel" ,"rate int  = "+  rate.value.toString())
+            rate.value?.let { onInsert(it) }
+
+        }
+
+        _navigateToStudentTracker.value =true
+    }
 
     fun onSetStudentQuality(rateValue : Int){
         rate.value?.rateValue = rateValue

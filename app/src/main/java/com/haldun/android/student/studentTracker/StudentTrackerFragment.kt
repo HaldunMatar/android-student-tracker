@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.haldun.android.student.R
 import com.haldun.android.student.databinding.StudentTrackerFragmentBinding
 
@@ -41,29 +40,53 @@ class StudentTrackerFragment : Fragment() {
         }
 
         binding.stopButton.setOnClickListener {
+            val listString = sleepTrackerViewModel.EvalList.joinToString()
+            Log.i("EvalList22", listString)
+            this.findNavController().navigate(StudentTrackerFragmentDirections
+                    .actionStudentTrackerFragmentToStudentDetailsFragment( -1 ,listString))
 
-            this.findNavController().
-            navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToEvaluationTrackerFragment())
+
+         /*   this.findNavController().
+            navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToEvaluationTrackerFragment())*/
 
         }
 
 
       //  val manager = GridLayoutManager(activity, 3)
       //  binding.studentList.layoutManager = manager
-        val adapter = StudentAdapter( StudentListener {
-            sleepTrackerViewModel.onStudentEvaluateClicked(it)
-        })
-        binding.studentList.adapter = adapter
-        sleepTrackerViewModel.students.observe(viewLifecycleOwner, Observer {
+        val adapter = StudentAdapter( StudentEvaluationListener {
+            l: Long ->
+            Log.i("EvalList", "EvalList.get(it.toInt()).toString()")
+            sleepTrackerViewModel.onStudentEvaluateClicked(l)
+        }
+,
+                StudentAddListEvaluationListener {
+                    l: Long ->
 
+                    Log.i("EvalList", "EvalList.get(it.toInt()).toString()")
+                    sleepTrackerViewModel. studentAddListEvaluation(l)
+                }
+        )
+        binding.studentList.adapter = adapter
+        sleepTrackerViewModel.students.observe(
+
+
+                viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }
-        })
+        }
+
+
+        )
 
         sleepTrackerViewModel.navigateToStudentDataQuality.observe(viewLifecycleOwner, Observer { night ->
             night?.let {
-               this.findNavController().navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToStudentDetailsFragment(it))
+
+                val listString = sleepTrackerViewModel.EvalList.joinToString()
+                Log.i("EvalList22", listString)
+                  this.findNavController().
+         navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToEvaluationTrackerFragment())
 
                 sleepTrackerViewModel.onStudentDataQualityNavigated()
             }

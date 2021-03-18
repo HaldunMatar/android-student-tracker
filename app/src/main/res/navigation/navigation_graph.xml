@@ -40,6 +40,9 @@
         <argument
             android:name="studentKey"
             app:argType="long" />
+        <argument
+            android:name="studentsKeys"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/studentInfoFragment"
@@ -54,5 +57,9 @@
         android:id="@+id/evaluationTrackerFragment"
         android:name="com.haldun.android.student.evaluationtracker.EvaluationTrackerFragment"
         android:label="fragment_evaluation_tracker"
-        tools:layout="@layout/fragment_evaluation_tracker" />
+        tools:layout="@layout/fragment_evaluation_tracker" >
+        <action
+            android:id="@+id/action_evaluationTrackerFragment_to_studentTrackerFragment"
+            app:destination="@id/studentTrackerFragment" />
+    </fragment>
 </navigation>

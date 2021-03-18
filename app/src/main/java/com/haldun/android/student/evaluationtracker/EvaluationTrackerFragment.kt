@@ -8,13 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.haldun.android.student.R
 import com.haldun.android.student.database.StudentDatabase
 import com.haldun.android.student.databinding.FragmentEvaluationTrackerBinding
-import com.haldun.android.student.studentTracker.StudentAdapter
-import com.haldun.android.student.studentTracker.StudentListener
-import com.haldun.android.student.studentTracker.StudentTrackerViewModel
-import com.haldun.android.student.studentTracker.StudentTrackerViewModelFactory
+import com.haldun.android.student.studentTracker.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,7 +55,13 @@ class EvaluationTrackerFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
+        binding.bakButton.setOnClickListener {
 
+            this.findNavController().
+            navigate(EvaluationTrackerFragmentDirections.actionEvaluationTrackerFragmentToStudentTrackerFragment())
+
+
+        }
 
         val adapter = EvaluationAdapter( RateListener {
         })

@@ -6,6 +6,7 @@ import android.util.Log
 import com.haldun.android.student.database.Student
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.haldun.android.student.databinding.ListItemStudentBinding
 
 
-class StudentAdapter(val clickListener: StudentListener) : ListAdapter<Student,
+class StudentAdapter(val clickListener: StudentEvaluationListener,val studentAddListEvaluationListener: StudentAddListEvaluationListener) : ListAdapter<Student,
         StudentAdapter.ViewHolder>(   SleepNightDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(clickListener, item)
+        holder.bind(clickListener,studentAddListEvaluationListener  , item)
 
     }
 
@@ -30,10 +31,14 @@ class StudentAdapter(val clickListener: StudentListener) : ListAdapter<Student,
     class ViewHolder private constructor(val binding: ListItemStudentBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(clickListener: StudentListener,item: Student) {
+
+        fun bind(studentEvaluationListener: StudentEvaluationListener,studentAddListEvaluationListener: StudentAddListEvaluationListener,item: Student) {
+
             binding.student = item
-            binding.clickListener = clickListener
+            binding.studentEvaluationListener = studentEvaluationListener
+            binding.studentAddListEvaluationListener= studentAddListEvaluationListener
             binding.executePendingBindings()
+
         }
 
 
@@ -61,7 +66,17 @@ class SleepNightDiffCallback : DiffUtil.ItemCallback<Student>() {
     }
 }
 
-class StudentListener(val clickListener: (sleepId: Long) -> Unit) {
+class StudentEvaluationListener(val clickListener: (Long) -> Unit) {
+
+    fun onClick(student: Student) = clickListener(student.studentId)
+}
+
+class StudentInfoListener(val clickListener: (Long) -> Unit) {
+
+    fun onClick(student: Student) = clickListener(student.studentId)
+}
+
+class StudentAddListEvaluationListener(val clickListener: (Long) -> Unit) {
 
     fun onClick(student: Student) = clickListener(student.studentId)
 }

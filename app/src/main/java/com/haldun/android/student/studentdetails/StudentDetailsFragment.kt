@@ -1,6 +1,7 @@
 package com.haldun.android.student.studentdetails
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,8 +43,10 @@ class StudentDetailsFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = StudentDatabase.getInstance(application).rateDatabaseDao
+       val stringArray =  args.studentsKeys
 
-        val viewModelFactory = StudentDetailsViewModelFactory(args.studentKey, dataSource,application)
+        val viewModelFactory =
+                StudentDetailsViewModelFactory(args.studentKey,stringArray, dataSource,application)
 
        val viewModel = ViewModelProviders.of(this,viewModelFactory).get(StudentDetailsViewModel::class.java)
 

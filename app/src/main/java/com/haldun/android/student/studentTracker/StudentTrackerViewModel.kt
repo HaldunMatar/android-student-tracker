@@ -1,6 +1,7 @@
 package com.haldun.android.student.studentTracker
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,10 +18,22 @@ class StudentTrackerViewModel(val database: StudentDatabaseDao, application: App
     val students = database.getAllStudents()
     private var student = MutableLiveData<Student?>()
 
+
+
+
+    val EvalList: MutableList<Long> = mutableListOf()        // or arrayListOf
+
+
+
+
+    private fun addStudentTOEvalList(std: Long) {
+        EvalList.add(std)
+    }
+
     fun onInsert() {
         viewModelScope.launch {
             val studenttemp = Student();
-            insert(studenttemp)
+             insert(studenttemp)
         }
     }
 
@@ -44,6 +57,8 @@ class StudentTrackerViewModel(val database: StudentDatabaseDao, application: App
         get() = _navigateToStudentDataQuality
 
     fun onStudentEvaluateClicked(id: Long) {
+
+
         _navigateToStudentDataQuality.value = id
     }
 
@@ -51,8 +66,12 @@ class StudentTrackerViewModel(val database: StudentDatabaseDao, application: App
         _navigateToStudentDataQuality.value = null
     }
 
+    fun studentAddListEvaluation(l: Long) {
 
 
+        addStudentTOEvalList(l);
+
+    }
 
 
 }
