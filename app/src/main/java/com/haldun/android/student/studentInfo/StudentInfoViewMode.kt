@@ -47,7 +47,7 @@ class StudentInfoViewMode(
 
             student.value?.studentGrade=temp?.studentGrade!!
 
-            student.value?.studentSubGrade= temp?.studentGrade!!
+            student.value?.studentSubGrade= temp?.studentSubGrade!!
 
         }
     }

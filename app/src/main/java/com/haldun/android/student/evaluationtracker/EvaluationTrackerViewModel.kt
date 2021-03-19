@@ -16,9 +16,13 @@ class EvaluationTrackerViewModel(studntKey: Long, rateDataSource: RateDatabaseDa
 
 
 {
-
-    val rates = rateDataSource.getAllRates()
+    val rates = rateDataSource.getRatesById(studntKey)
+   // val rates = rateDataSource.getAllRates()
     private var student = MutableLiveData<Student?>()
+
+
+
+
 
 
 }

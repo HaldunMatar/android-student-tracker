@@ -47,7 +47,11 @@ class EvaluationTrackerFragment : Fragment() {
         val studentDataSource = StudentDatabase.getInstance(application).studentDatabaseDao
         val rateDataSource = StudentDatabase.getInstance(application).rateDatabaseDao
 
-        val viewModelFactory = EvaluationTrackerViewModelFactory(2,rateDataSource,studentDataSource ,application)
+        val args = EvaluationTrackerFragmentArgs.fromBundle(requireArguments())
+        val studentKey =  args.studentKey
+
+
+        val viewModelFactory = EvaluationTrackerViewModelFactory(studentKey,rateDataSource,studentDataSource ,application)
         val evaluatioTrackerViewModel =
                 ViewModelProvider(
                         this, viewModelFactory).get(EvaluationTrackerViewModel::class.java)

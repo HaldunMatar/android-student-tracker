@@ -13,6 +13,7 @@ import com.haldun.android.student.database.Student
 import com.haldun.android.student.database.StudentDatabase
 
 import com.haldun.android.student.databinding.FragmentStudentInfoBinding
+import com.haldun.android.student.studentdetails.StudentDetailsFragmentArgs
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,7 +47,6 @@ class StudentInfoFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = StudentDatabase.getInstance(application).studentDatabaseDao
-
 
         val viewModelFactory = StudentInfoViewModelFactory(10,dataSource)
         val studentInfoViewModel =

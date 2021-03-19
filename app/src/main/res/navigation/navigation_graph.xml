@@ -61,5 +61,8 @@
         <action
             android:id="@+id/action_evaluationTrackerFragment_to_studentTrackerFragment"
             app:destination="@id/studentTrackerFragment" />
+        <argument
+            android:name="studentKey"
+            app:argType="long" />
     </fragment>
 </navigation>

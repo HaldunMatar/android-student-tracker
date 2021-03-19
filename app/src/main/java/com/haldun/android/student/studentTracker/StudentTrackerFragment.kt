@@ -86,7 +86,7 @@ class StudentTrackerFragment : Fragment() {
                 val listString = sleepTrackerViewModel.EvalList.joinToString()
                 Log.i("EvalList22", listString)
                   this.findNavController().
-         navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToEvaluationTrackerFragment())
+         navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToEvaluationTrackerFragment(it))
 
                 sleepTrackerViewModel.onStudentDataQualityNavigated()
             }

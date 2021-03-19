@@ -20,5 +20,8 @@ interface RateDatabaseDao {
     @Query("SELECT * FROM rate_table ORDER BY rate_id DESC")
     fun getAllRates(): LiveData<List<Rate>>
 
+    @Query("SELECT * FROM rate_table   where rate_student_id= :studntKey   ORDER BY rate_id DESC  ")
+    fun  getRatesById(studntKey :  Long ): LiveData<List<Rate>>
+
 
 }
