@@ -11,10 +11,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.haldun.android.student.database.StudentRate
 import com.haldun.android.student.databinding.ListItemStudentBinding
 
 
-class StudentAdapter(val clickListener: StudentEvaluationListener,val studentAddListEvaluationListener: StudentAddListEvaluationListener) : ListAdapter<Student,
+class StudentAdapter(val clickListener: StudentEvaluationListener,val studentAddListEvaluationListener:
+StudentAddListEvaluationListener) : ListAdapter<StudentRate,
         StudentAdapter.ViewHolder>(   SleepNightDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -32,9 +34,9 @@ class StudentAdapter(val clickListener: StudentEvaluationListener,val studentAdd
         : RecyclerView.ViewHolder(binding.root) {
 
 
-        fun bind(studentEvaluationListener: StudentEvaluationListener,studentAddListEvaluationListener: StudentAddListEvaluationListener,item: Student) {
+        fun bind(studentEvaluationListener: StudentEvaluationListener,studentAddListEvaluationListener: StudentAddListEvaluationListener,item: StudentRate) {
 
-            binding.student = item
+            binding.studentRate = item
             binding.studentEvaluationListener = studentEvaluationListener
             binding.studentAddListEvaluationListener= studentAddListEvaluationListener
             binding.executePendingBindings()
@@ -56,27 +58,27 @@ class StudentAdapter(val clickListener: StudentEvaluationListener,val studentAdd
 
 
 
-class SleepNightDiffCallback : DiffUtil.ItemCallback<Student>() {
-    override fun areItemsTheSame(oldItem: Student, newItem: Student): Boolean {
+class SleepNightDiffCallback : DiffUtil.ItemCallback<StudentRate>() {
+    override fun areItemsTheSame(oldItem: StudentRate, newItem: StudentRate): Boolean {
         return oldItem.studentId == newItem.studentId
     }
 
-    override fun areContentsTheSame(oldItem: Student, newItem: Student): Boolean {
+    override fun areContentsTheSame(oldItem: StudentRate, newItem: StudentRate): Boolean {
         return oldItem == newItem
     }
 }
 
 class StudentEvaluationListener(val clickListener: (Long) -> Unit) {
 
-    fun onClick(student: Student) = clickListener(student.studentId)
+    fun onClick(student: StudentRate) = clickListener(student.studentId)
 }
 
 class StudentInfoListener(val clickListener: (Long) -> Unit) {
 
-    fun onClick(student: Student) = clickListener(student.studentId)
+    fun onClick(student: StudentRate) = clickListener(student.studentId)
 }
 
 class StudentAddListEvaluationListener(val clickListener: (Long) -> Unit) {
 
-    fun onClick(student: Student) = clickListener(student.studentId)
+    fun onClick(studentRate: StudentRate) = clickListener(studentRate.studentId)
 }

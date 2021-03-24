@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">تقيمات الطلاب</string>
     <string name="back" translatable="false">"الخلف "</string>
+    <string name="add_student">Add student</string>
+    <string name="evaluate_student">Evaluate student</string>
 </resources>

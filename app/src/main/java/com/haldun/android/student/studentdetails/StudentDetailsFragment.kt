@@ -43,10 +43,12 @@ class StudentDetailsFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = StudentDatabase.getInstance(application).rateDatabaseDao
+
+        val studentDatabase= StudentDatabase.getInstance(application).studentDatabaseDao
        val stringArray =  args.studentsKeys
 
         val viewModelFactory =
-                StudentDetailsViewModelFactory(args.studentKey,stringArray, dataSource,application)
+                StudentDetailsViewModelFactory(args.studentKey,stringArray, dataSource,studentDatabase,application)
 
        val viewModel = ViewModelProviders.of(this,viewModelFactory).get(StudentDetailsViewModel::class.java)
 

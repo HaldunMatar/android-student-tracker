@@ -17,6 +17,7 @@ class StudentTrackerViewModel(val database: StudentDatabaseDao, application: App
 
     val students = database.getAllStudents()
     private var student = MutableLiveData<Student?>()
+    val studentsRate = database.getAllStudentsWithRats()
 
 
 

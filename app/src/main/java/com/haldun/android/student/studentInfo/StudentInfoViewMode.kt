@@ -24,7 +24,11 @@ class StudentInfoViewMode(
         viewModelScope.launch {
 
            Log.i("StudentInfoViewMode","onInsert")
-            student.value?.let { insert(it) }
+            student.value?.let {
+
+                insert(it)
+
+                   }
             getToStudent()
 
 
@@ -41,7 +45,6 @@ class StudentInfoViewMode(
     private fun getToStudent() {
         viewModelScope.launch {
            val  temp = getToStudentFromDatabase()
-
             student.value= Student()
             student.value?.studentName=" "
 

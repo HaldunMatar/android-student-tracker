@@ -6,12 +6,16 @@ import androidx.lifecycle.*
 import com.haldun.android.student.database.Rate
 import com.haldun.android.student.database.RateDatabaseDao
 import com.haldun.android.student.database.Student
+import com.haldun.android.student.database.StudentDatabaseDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class StudentDetailsViewModel
-(val studentId:Long, val  stringKeys : String  ,val dataSource : RateDatabaseDao , application: Application) :
+(val studentId:Long, val  stringKeys : String, private val dataSource : RateDatabaseDao,
+ studentDatabase: StudentDatabaseDao,
+
+ application: Application) :
     AndroidViewModel(application)
 {
 
@@ -24,11 +28,7 @@ class StudentDetailsViewModel
          }
 
 
-        ListKeys.forEach {
 
-            Log.i("stringKey",it.toString())
-
-        }
     }
 
 
@@ -53,6 +53,10 @@ class StudentDetailsViewModel
             Log.i("studentDetailsViewModel" ,"rate int  = "+  rate.value.toString())
             rate.value?.let { onInsert(it) }
 
+
+           onUpdateAverageRateStudent(it.toLong()) ;
+
+
         }
 
         _navigateToStudentTracker.value =true
@@ -66,16 +70,31 @@ class StudentDetailsViewModel
         _navigateToStudentTracker.value =true
     }
 
+    fun  onUpdateAverageRateStudent(it: Long) {
 
+          viewModelScope.launch {
+
+           val    idStu =  getRateStudent(it)
+
+              Log.i("AverageRateStudent" ,"onUpdateAverageRateStudent rate idStu  = "+  idStu.toString())
+          }
+    }
+
+    private suspend fun  getRateStudent(it: Long) {
+
+        withContext(Dispatchers.IO){
+
+            dataSource.getAverageRateStudentFromDB(it)
+        }
+        Log.i("AverageRateStudent" ,"onUpdateAverageRateStudent rate idStu  = ")
+
+    }
 
     fun onInsert( rate :  Rate ) {
         viewModelScope.launch {
 
             Log.i("evaluatiowModel","onInsert")
              insert(rate)
-
-
-
         }
     }
 

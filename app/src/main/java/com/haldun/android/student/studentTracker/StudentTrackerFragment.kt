@@ -73,11 +73,20 @@ class StudentTrackerFragment : Fragment() {
 
                 viewLifecycleOwner, Observer {
             it?.let {
-                adapter.submitList(it)
+                Log.i("ListStudents", it.size.toString())
+
             }
         }
 
 
+        )
+        sleepTrackerViewModel.studentsRate.observe(
+                viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+                Log.i("ListStudentsRate", it.size.toString())
+            }
+            }
         )
 
         sleepTrackerViewModel.navigateToStudentDataQuality.observe(viewLifecycleOwner, Observer { night ->
