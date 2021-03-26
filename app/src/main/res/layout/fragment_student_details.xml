@@ -137,15 +137,14 @@ xmlns:tools="http://schemas.android.com/tools">
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <Button
         android:id="@+id/backButton"
         style="@style/StudentButtons"
         android:layout_width="177dp"
         android:layout_height="34dp"
-        android:text="Button"
-
         android:onClick="@{() -> viewmodel.studentEvaluation(rate)}"
+
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

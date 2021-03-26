@@ -62,13 +62,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
             android:ems="10"
-            android:text="@={viewmodel.student.studentName}"
             android:inputType="textPersonName"
+            android:text="@={viewmodel.student.studentName}"
 
             app:layout_constraintBaseline_toBaselineOf="@+id/storeName_lable"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.704"
+            app:layout_constraintStart_toEndOf="@+id/storeName_lable" />
 
         <EditText
             android:id="@+id/storeCode_input"
@@ -102,7 +103,7 @@
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewmodel.onInsert(student)}"
 
-            android:text="save"
+            android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/back_store_button"
             app:layout_constraintHorizontal_bias="0.5"
@@ -117,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="delete"
+            android:text="@string/delete"
             app:layout_constraintBaseline_toBaselineOf="@+id/back_store_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -129,7 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="back"
+            android:text="@string/back"
             app:layout_constraintEnd_toStartOf="@+id/delete_store_button"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/save_store_button"

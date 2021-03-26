@@ -1,9 +1,14 @@
 <resources>
-    <string name="app_name" translatable="false">Student Tracker</string>
+    <string name="app_name">Student Tracker  - Meneahel school</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="label" translatable="false">label</string>
-    <string name="back" translatable="false">back</string>
+    <string name="back">back</string>
     <string name="add_student">Add student</string>
     <string name="evaluate_student">Evaluate student</string>
+
+    <string name="save">save</string>
+    <string name="delete">Delete</string>
+
+
 </resources>

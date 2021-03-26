@@ -34,6 +34,7 @@
                 android:layout_marginStart="@dimen/margin"
 
                 android:text="@string/add_student"
+                android:visibility="invisible"
                 app:layout_constraintBaseline_toBaselineOf="@id/stop_button"
                 app:layout_constraintEnd_toStartOf="@+id/stop_button"
                 app:layout_constraintHorizontal_bias="0.55"
@@ -50,6 +51,7 @@
                 android:onClick="@{}"
                 android:text="@string/evaluate_student"
 
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/start_button"
                 app:layout_constraintTop_toTopOf="parent" />

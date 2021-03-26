@@ -40,12 +40,15 @@ class StudentTrackerFragment : Fragment() {
         }
 
         binding.stopButton.setOnClickListener {
-            val listString = sleepTrackerViewModel.EvalList.joinToString()
-            Log.i("EvalList22", listString)
-            this.findNavController().navigate(StudentTrackerFragmentDirections
-                    .actionStudentTrackerFragmentToStudentDetailsFragment( -1 ,listString))
+           if( sleepTrackerViewModel.EvalList.size> 0) {
+               val listString = sleepTrackerViewModel.EvalList.joinToString()
 
 
+
+               this.findNavController().navigate(StudentTrackerFragmentDirections
+                       .actionStudentTrackerFragmentToStudentDetailsFragment(-1, listString))
+
+           }
          /*   this.findNavController().
             navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToEvaluationTrackerFragment())*/
 
