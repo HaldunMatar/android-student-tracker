@@ -68,6 +68,9 @@ class EvaluationTrackerFragment : Fragment() {
         }
 
         val adapter = EvaluationAdapter( RateListener {
+
+            evaluatioTrackerViewModel.onDelete(it)
+
         })
 
         evaluatioTrackerViewModel.rates.observe(viewLifecycleOwner,{

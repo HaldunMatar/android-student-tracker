@@ -1,7 +1,6 @@
 package com.haldun.android.student.studentTracker
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -27,8 +26,13 @@ class StudentTrackerViewModel(val database: StudentDatabaseDao, application: App
 
 
 
-    private fun addStudentTOEvalList(std: Long) {
+    private fun addStudentTOEvalList(std: Long, i: Int) {
+        if(i==1)
         EvalList.add(std)
+        else{
+
+            EvalList.remove(std)
+        }
     }
 
     fun onInsert() {
@@ -67,10 +71,9 @@ class StudentTrackerViewModel(val database: StudentDatabaseDao, application: App
         _navigateToStudentDataQuality.value = null
     }
 
-    fun studentAddListEvaluation(l: Long) {
+    fun studentAddListEvaluation(l: Long, i: Int) {
 
-
-        addStudentTOEvalList(l);
+        addStudentTOEvalList(l,i);
 
     }
 

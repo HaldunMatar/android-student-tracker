@@ -54,7 +54,7 @@ interface StudentDatabaseDao {
 
 
     @Query(
-            "SELECT  ROUND( AVG(rate_value), 1)  as rateValue ,  student_id as studentId ,student_name  as studentName  FROM student_table " +
+            "SELECT  ROUND( AVG(rate_value), 1)  as rateValue    ,  student_id as studentId ,student_name  as studentName  FROM student_table " +
                     " LEFT  JOIN rate_table ON rate_student_id = Student_id  GROUP BY studentId,studentName "
     )
     fun getAllStudentsWithRats(): LiveData<List<StudentRate>>

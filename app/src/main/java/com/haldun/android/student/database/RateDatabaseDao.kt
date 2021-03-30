@@ -26,5 +26,8 @@ interface RateDatabaseDao {
    @Query("SELECT AVG(rate_value) as ratevalue  FROM rate_table   where rate_student_id= :studntKey     ")
  // @Query("SELECT * FROM rate_table   where rate_student_id= :studntKey   ORDER BY rate_id DESC  ")
   fun   getAverageRateStudentFromDB(studntKey: Long): Long
+
+    @Query("delete  FROM rate_table where   rate_id= :id ")
+    abstract fun delete(id: Long)
 }
 

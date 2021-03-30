@@ -24,54 +24,67 @@
             android:id="@+id/imageView2"
             android:layout_width="72dp"
             android:layout_height="56dp"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:layout_marginStart="16dp"
+
+
+            app:layout_constraintEnd_toStartOf="@+id/dateRateView"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.033"
-
             app:studentImageRate="@{rate}"
-            tools:srcCompat="@drawable/ic_sleep_active"
-
-
-            />
+            tools:srcCompat="@drawable/ic_sleep_active" />
 
 
         <TextView
             android:id="@+id/desRateView"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@{rate.rateDes}"
+            android:layout_marginStart="10dp"
 
-            app:layout_constraintBaseline_toBaselineOf="@+id/dateRateView"
+            android:text="@{rate.rateDes}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/IdRateView"
             app:layout_constraintEnd_toStartOf="@+id/IdRateView"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/dateRateView" />
 
         <TextView
             android:id="@+id/dateRateView"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
 
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/desRateView"
             app:layout_constraintEnd_toStartOf="@+id/desRateView"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="parent"
             app:rateDateString="@{rate}" />
 
         <TextView
             android:id="@+id/IdRateView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
 
+            android:layout_marginStart="10dp"
             android:text='@{" " + rate.rateId}'
-            app:layout_constraintBaseline_toBaselineOf="@+id/desRateView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/desRateView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> clickListener.onClick(rate) }"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/desRateView" />
+            app:layout_constraintStart_toEndOf="@+id/IdRateView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_delete" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

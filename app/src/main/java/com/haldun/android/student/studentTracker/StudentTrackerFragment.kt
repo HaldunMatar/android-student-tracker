@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,6 +16,7 @@ import com.haldun.android.student.R
 import com.haldun.android.student.databinding.StudentTrackerFragmentBinding
 
 import com.haldun.android.student.database.StudentDatabase
+import com.haldun.android.student.evaluationtracker.RateListener
 
 class StudentTrackerFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -57,19 +59,53 @@ class StudentTrackerFragment : Fragment() {
 
       //  val manager = GridLayoutManager(activity, 3)
       //  binding.studentList.layoutManager = manager
-        val adapter = StudentAdapter( StudentEvaluationListener {
-            l: Long ->
-            Log.i("EvalList", "EvalList.get(it.toInt()).toString()")
-            sleepTrackerViewModel.onStudentEvaluateClicked(l)
-        }
-,
-                StudentAddListEvaluationListener {
-                    l: Long ->
 
-                    Log.i("EvalList", "EvalList.get(it.toInt()).toString()")
-                    sleepTrackerViewModel. studentAddListEvaluation(l)
-                }
+      val ff =    CompoundButton.OnCheckedChangeListener() {
+          compoundButton: CompoundButton, b: Boolean ->
+          Log.i("EvalList", "OnCheckedChangeListener")
+        }
+
+        val adapter = StudentAdapter(
+
+
+
+                StudentEvaluationListener {
+
+
+            sleepTrackerViewModel.onStudentEvaluateClicked(it)
+        },
+
+              StudentAddListEvaluationListener( { l: Long, i: Int ->
+                  {
+                      sleepTrackerViewModel.studentAddListEvaluation(l, i)
+                      Log.i("EvalList", "CompoundButton")
+
+                  }
+
+              },
+                      CompoundButton.OnCheckedChangeListener(){
+
+                          compoundButton: CompoundButton, b: Boolean ->
+
+
+                          Log.i("EvalList", "CompoundButton")
+                      }
+
+                      )
+                /* ,
+
+
+                      CompoundButton.OnCheckedChangeListener(){
+
+                          compoundButton: CompoundButton, b: Boolean ->
+
+
+                          Log.i("EvalList", "EvalList.get(it.toInt()).toString()")
+                      }*/
+
+
         )
+
         binding.studentList.adapter = adapter
         sleepTrackerViewModel.students.observe(
 
@@ -92,6 +128,8 @@ class StudentTrackerFragment : Fragment() {
             }
         )
 
+
+
         sleepTrackerViewModel.navigateToStudentDataQuality.observe(viewLifecycleOwner, Observer { night ->
             night?.let {
 
@@ -106,4 +144,5 @@ class StudentTrackerFragment : Fragment() {
 
         return binding.root
     }
-}
+
+ }
