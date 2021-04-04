@@ -52,6 +52,10 @@
         <action
             android:id="@+id/action_studentInfoFragment_to_studentTrackerFragment"
             app:destination="@id/studentTrackerFragment" />
+        <argument
+            android:name="studentKey"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
     <fragment
         android:id="@+id/evaluationTrackerFragment"

@@ -47,14 +47,16 @@ class StudentDetailsViewModel
 
 
         ListKeys.forEach {
+        var   rate  = Rate()
+          //  rate.value?.rateValue = rateValue
+         //   rate.value?.rateStudentId = it.toLong()
+            rate.rateStudentId= it.toLong()
+            rate.rateValue=rateValue
+         //   rate.value?.let { onInsert(rate.value!!) }
 
-            rate.value?.rateValue = rateValue
-            rate.value?.rateStudentId = it.toLong()
-            Log.i("studentDetailsViewModel" ,"rate int  = "+  rate.value.toString())
-            rate.value?.let { onInsert(it) }
 
-
-           onUpdateAverageRateStudent(it.toLong()) ;
+           onSetStudentQuality(rate)
+          // onUpdateAverageRateStudent(it.toLong()) ;
 
 
         }
@@ -62,12 +64,12 @@ class StudentDetailsViewModel
         _navigateToStudentTracker.value =true
     }
 
-    fun onSetStudentQuality(rateValue : Int){
-        rate.value?.rateValue = rateValue
-        rate.value?.rateStudentId = this.studentId
-        Log.i("studentDetailsViewModel" ,"rate int  = "+  rate.value.toString())
-        rate.value?.let { onInsert(it) }
-        _navigateToStudentTracker.value =true
+    fun onSetStudentQuality(rate : Rate){
+        /*rate.value?.rateValue = rateValue
+        rate.value?.rateStudentId = studentId
+        Log.i("studentDetailsViewModel" ,"rate int  = "+  rate.value.toString())*/
+         onInsert(rate)
+
     }
 
     fun  onUpdateAverageRateStudent(it: Long) {
@@ -90,16 +92,18 @@ class StudentDetailsViewModel
 
     }
 
-    fun onInsert( rate :  Rate ) {
+    private fun onInsert(rate :  Rate ) {
         viewModelScope.launch {
 
-            Log.i("evaluatiowModel","onInsert")
+
              insert(rate)
         }
     }
 
     private suspend fun insert(rate: Rate) {
         withContext(Dispatchers.IO) {
+
+            Log.i("studentDetailsViewModel" ," insert rate  suspend .......3value obo int  = "+  rate.toString())
             dataSource.insert(rate)
 
         }

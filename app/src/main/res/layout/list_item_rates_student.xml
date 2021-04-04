@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
 
-            android:text="@{rate.rateDes}"
+            android:text="@{String.valueOf(rate.rateDes)}"
             app:layout_constraintBaseline_toBaselineOf="@+id/IdRateView"
             app:layout_constraintEnd_toStartOf="@+id/IdRateView"
             app:layout_constraintHorizontal_bias="0.5"

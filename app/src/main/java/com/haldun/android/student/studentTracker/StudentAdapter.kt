@@ -1,11 +1,9 @@
 package com.haldun.android.student.studentTracker
 
+
 import android.util.Log
-
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -15,19 +13,19 @@ import com.haldun.android.student.databinding.ListItemStudentBinding
 
 
 class StudentAdapter(
-    val clickListener: StudentEvaluationListener, val studentAddListEvaluationListener:
-    StudentAddListEvaluationListener
+        val clickListener: StudentEvaluationListener, val studentAddListEvaluationListener:
+        StudentAddListEvaluationListener , val clickInfoListener: StudentInfoListener
 ) : ListAdapter<StudentRate,
-        StudentAdapter.ViewHolder>(   SleepNightDiffCallback()) {
+        StudentAdapter.ViewHolder>(SleepNightDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(clickListener,studentAddListEvaluationListener  , item)
+        holder.bind(clickListener, studentAddListEvaluationListener,clickInfoListener, item)
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Log.i("onCreateViewHolder" , "onCreateViewHolder")
+        Log.i("onCreateViewHolder", "onCreateViewHolder")
         return ViewHolder.from(parent)
     }
 
@@ -36,17 +34,30 @@ class StudentAdapter(
 
 
         fun bind(
-            studentEvaluationListener: StudentEvaluationListener,
-            studentAddListEvaluationListener: StudentAddListEvaluationListener,
-            item: StudentRate) {
+                studentEvaluationListener: StudentEvaluationListener,
+                studentAddListEvaluationListener: StudentAddListEvaluationListener,  clickInfoListener: StudentInfoListener,
+                item: StudentRate) {
 
             binding.studentRate = item
             binding.studentEvaluationListener = studentEvaluationListener
+            binding.studentAddListEvaluationListener = studentAddListEvaluationListener
 
-           binding.checkBox.setOnCheckedChangeListener(studentAddListEvaluationListener.onCheckedChangeListener);
+            binding.studentInfoListener =  clickInfoListener
+
+            binding.checkBox.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    Log.i("addStudentTOEvalList", "isChecked 00 t")
+                   binding.studentAddListEvaluationListener!!.onCheckedChanged(item)
+                } else {
+                    Log.i("addStudentTOEvalList", "UN  isChecked 00 t")
+                   // binding.studentAddListEvaluationListener.studentAddListEvaluationListenerUnChecked(item.studentId)
+                }
+            })
 
 
-         binding.studentAddListEvaluationListener= studentAddListEvaluationListener
+
+
+
 
             binding.executePendingBindings()
 
@@ -78,8 +89,9 @@ class SleepNightDiffCallback : DiffUtil.ItemCallback<StudentRate>() {
     }
 }
 
-class StudentEvaluationListener(val clickListener: (Long) -> Unit,
-                              ) {
+class StudentEvaluationListener(
+        val clickListener: (Long) -> Unit,
+) {
 
 
 
@@ -92,23 +104,12 @@ class StudentInfoListener(val clickListener: (Long) -> Unit) {
     fun onClick(student: StudentRate) = clickListener(student.studentId)
 }
 
-class StudentAddListEvaluationListener(val clickListener: (Long,Int) -> Unit
+class StudentAddListEvaluationListener(val studentAddListEvaluationListenerChecked: (Long) -> Unit,val studentAddListEvaluationListenerUnChecked: (Long) -> Unit)
 
-                ,       val     onCheckedChangeListener: CompoundButton.OnCheckedChangeListener
-
-
-)
-{
-
-
-    fun onClick(studentRate: StudentRate,i: Int ) = clickListener(studentRate.studentId,i)
-
-
-
-
-
-
-}
+     {
+     fun onCheckedChanged  (student: StudentRate) =  studentAddListEvaluationListenerChecked(student.studentId)
+     fun onUnCheckedChanged(student: StudentRate) =  studentAddListEvaluationListenerUnChecked(student.studentId)
+    }
 /*
 
 ,

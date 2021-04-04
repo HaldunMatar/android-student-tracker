@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EvaluationTrackerViewModel(studntKey: Long, val rateDataSource: RateDatabaseDao,
+class EvaluationTrackerViewModel(studntKey: Long, private val rateDataSource: RateDatabaseDao,
                                  studentDatabase: StudentDatabaseDao, application: Application)
     :  AndroidViewModel(application)
 

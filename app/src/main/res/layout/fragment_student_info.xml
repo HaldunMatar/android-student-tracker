@@ -30,16 +30,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:text="Name"
+            android:text="@string/name"
             app:layout_constraintBottom_toTopOf="@+id/storeCode_lable"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/storeCode_lable"
             style="Label_Style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grade"
+            android:text="@string/grade"
 
 
             app:layout_constraintBottom_toTopOf="@+id/storeAddress_lable"
@@ -51,7 +52,7 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="section"
+            android:text="@string/section"
 
             app:layout_constraintBottom_toTopOf="@+id/save_store_button"
             app:layout_constraintStart_toStartOf="@+id/storeCode_lable"

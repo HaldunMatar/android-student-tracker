@@ -42,10 +42,10 @@ class StudentTrackerFragment : Fragment() {
         }
 
         binding.stopButton.setOnClickListener {
-           if( sleepTrackerViewModel.EvalList.size> 0) {
+          if( sleepTrackerViewModel.EvalList.size> 0) {
                val listString = sleepTrackerViewModel.EvalList.joinToString()
 
-
+              Log.i("listString", listString)
 
                this.findNavController().navigate(StudentTrackerFragmentDirections
                        .actionStudentTrackerFragmentToStudentDetailsFragment(-1, listString))
@@ -57,13 +57,7 @@ class StudentTrackerFragment : Fragment() {
         }
 
 
-      //  val manager = GridLayoutManager(activity, 3)
-      //  binding.studentList.layoutManager = manager
 
-      val ff =    CompoundButton.OnCheckedChangeListener() {
-          compoundButton: CompoundButton, b: Boolean ->
-          Log.i("EvalList", "OnCheckedChangeListener")
-        }
 
         val adapter = StudentAdapter(
 
@@ -75,36 +69,25 @@ class StudentTrackerFragment : Fragment() {
             sleepTrackerViewModel.onStudentEvaluateClicked(it)
         },
 
-              StudentAddListEvaluationListener( { l: Long, i: Int ->
-                  {
-                      sleepTrackerViewModel.studentAddListEvaluation(l, i)
-                      Log.i("EvalList", "CompoundButton")
+              StudentAddListEvaluationListener(
+                      {
+                          sleepTrackerViewModel.studentAddListEvaluation(it,1)
+                      },
 
-                  }
+                      {
 
-              },
-                      CompoundButton.OnCheckedChangeListener(){
-
-                          compoundButton: CompoundButton, b: Boolean ->
-
-
-                          Log.i("EvalList", "CompoundButton")
+                          sleepTrackerViewModel.studentAddListEvaluation(it,0)
                       }
+              ),
 
-                      )
-                /* ,
+                StudentInfoListener {
 
+                    sleepTrackerViewModel.onStudentInfoClicked(it)
 
-                      CompoundButton.OnCheckedChangeListener(){
-
-                          compoundButton: CompoundButton, b: Boolean ->
-
-
-                          Log.i("EvalList", "EvalList.get(it.toInt()).toString()")
-                      }*/
-
-
+                }
         )
+
+
 
         binding.studentList.adapter = adapter
         sleepTrackerViewModel.students.observe(
@@ -112,7 +95,7 @@ class StudentTrackerFragment : Fragment() {
 
                 viewLifecycleOwner, Observer {
             it?.let {
-                Log.i("ListStudents", it.size.toString())
+
 
             }
         }
@@ -133,13 +116,22 @@ class StudentTrackerFragment : Fragment() {
         sleepTrackerViewModel.navigateToStudentDataQuality.observe(viewLifecycleOwner, Observer { night ->
             night?.let {
 
-                val listString = sleepTrackerViewModel.EvalList.joinToString()
-                Log.i("EvalList22", listString)
+             //   val listString = sleepTrackerViewModel.EvalList.joinToString()
+               // Log.i("EvalList22", listString)
                   this.findNavController().
          navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToEvaluationTrackerFragment(it))
 
                 sleepTrackerViewModel.onStudentDataQualityNavigated()
             }
+        })
+
+        sleepTrackerViewModel.navigateToStudentInfo.observe(viewLifecycleOwner,{
+            it?.let {
+                this.findNavController().navigate(StudentTrackerFragmentDirections.actionStudentTrackerFragmentToStudentInfoFragment(it))
+
+                sleepTrackerViewModel.studentInfoNavigated()
+            }
+
         })
 
         return binding.root
