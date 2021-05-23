@@ -22,7 +22,8 @@ class StudentDetailsViewModel
     private lateinit var  ListKeys: List<String>
     var rate = MutableLiveData<Rate?>()
     init {
-        rate.value= Rate()
+
+         rate.value= Rate()
          ListKeys =  stringKeys.split(",").map{
              it.trim()
          }
@@ -43,19 +44,19 @@ class StudentDetailsViewModel
 
     }
 
-    fun onSetStudentsQuality(rateValue : Int){
+    fun onSetStudentsQuality(rateValue : Float){
 
 
         ListKeys.forEach {
-        var   rate  = Rate()
+        var   rate1  = Rate()
           //  rate.value?.rateValue = rateValue
          //   rate.value?.rateStudentId = it.toLong()
-            rate.rateStudentId= it.toLong()
-            rate.rateValue=rateValue
+            rate1.rateStudentId= it.toLong()
+            rate1.rateValue=rateValue
          //   rate.value?.let { onInsert(rate.value!!) }
+            rate1.rateDes=rate.value!!.rateDes
 
-
-           onSetStudentQuality(rate)
+           onSetStudentQuality(rate1)
           // onUpdateAverageRateStudent(it.toLong()) ;
 
 

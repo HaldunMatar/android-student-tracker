@@ -13,8 +13,8 @@ import com.haldun.android.student.databinding.ListItemStudentBinding
 
 
 class StudentAdapter(
-        val clickListener: StudentEvaluationListener, val studentAddListEvaluationListener:
-        StudentAddListEvaluationListener , val clickInfoListener: StudentInfoListener
+    val clickListener: StudentEvaluationListener, val studentAddListEvaluationListener:
+        StudentAddListEvaluationListener, private val clickInfoListener: StudentInfoListener
 ) : ListAdapter<StudentRate,
         StudentAdapter.ViewHolder>(SleepNightDiffCallback()) {
 
@@ -35,7 +35,8 @@ class StudentAdapter(
 
         fun bind(
                 studentEvaluationListener: StudentEvaluationListener,
-                studentAddListEvaluationListener: StudentAddListEvaluationListener,  clickInfoListener: StudentInfoListener,
+                studentAddListEvaluationListener: StudentAddListEvaluationListener,
+                clickInfoListener: StudentInfoListener,
                 item: StudentRate) {
 
             binding.studentRate = item

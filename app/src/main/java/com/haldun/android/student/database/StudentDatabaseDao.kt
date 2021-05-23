@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.haldun.android.student.database.Student
+import com.haldun.android.student.database.Rate
 
 @Dao
 interface StudentDatabaseDao {
@@ -22,6 +23,17 @@ interface StudentDatabaseDao {
 
     @Query("SELECT * FROM student_table ORDER BY Student_id DESC LIMIT 1")
       suspend fun getToStudent(): Student?
+
+
+    @Query("SELECT * FROM student_table where  Student_id  = :studntKey")
+    suspend fun getToStudent(studntKey: Long): Student?
+
+
+    @Query("delete  FROM student_table  where   Student_id= :id ")
+    abstract fun delete(id: Long)
+
+    @Query("delete  FROM RATE_TABLE  where   rate_student_id= :id ")
+       abstract fun deleteRates(id: Long)
 
 
    /*@Query("SELECT *,AVG(rate_value) as ratevalue  FROM " +

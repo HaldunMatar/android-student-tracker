@@ -11,7 +11,7 @@ data @Entity(tableName = "rate_table")
   @ColumnInfo(name = "rate_id")
   var rateId:Long=0L ,
   @ColumnInfo(name = "rate_value")
-  var rateValue:Int=-1  ,
+  var rateValue:Float=-1F  ,
 
   @ColumnInfo(name = "rate_des")
   var rateDes:String ="  " ,

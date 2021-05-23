@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.haldun.android.student.R
@@ -13,7 +14,9 @@ import com.haldun.android.student.database.Student
 import com.haldun.android.student.database.StudentDatabase
 
 import com.haldun.android.student.databinding.FragmentStudentInfoBinding
+import com.haldun.android.student.studentTracker.StudentTrackerFragment
 import com.haldun.android.student.studentdetails.StudentDetailsFragmentArgs
+import com.haldun.android.student.studentdetails.StudentDetailsFragmentDirections
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -48,7 +51,9 @@ class StudentInfoFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = StudentDatabase.getInstance(application).studentDatabaseDao
 
-        val viewModelFactory = StudentInfoViewModelFactory(10,dataSource)
+        val args = StudentInfoFragmentArgs.fromBundle(requireArguments())
+
+        val viewModelFactory = StudentInfoViewModelFactory(args.studentKey,dataSource)
         val studentInfoViewModel =
                 ViewModelProviders.of(
                         this, viewModelFactory).get(StudentInfoViewMode::class.java)
@@ -59,9 +64,24 @@ class StudentInfoFragment : Fragment() {
             this.findNavController().navigate(StudentInfoFragmentDirections.actionStudentInfoFragmentToStudentTrackerFragment())
         }
 
+
+        studentInfoViewModel.navigateToStudentTracker.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                // Observed state is true.
+                this.findNavController().navigate(StudentInfoFragmentDirections.actionStudentInfoFragmentToStudentTrackerFragment() )
+                // Reset state to make sure we only navigate once, even if the device
+                // has a configuration change.
+                studentInfoViewModel.doneNavigating()
+            }
+        })
+
+
+
         binding.viewmodel = studentInfoViewModel
         binding.setLifecycleOwner(this)
-        binding.student= Student()
+        binding.student= studentInfoViewModel.student.value
+
+
         return binding.root
     }
 

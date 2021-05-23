@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="save" >حفظ</string>
+    <string name="delete">حذف</string>
+    <string name="app_name">برنامج تقيم الطلاب الفصلي</string>
+    <string name="back">الخلف</string>
+    <string name="add_student">اضافة طالب</string>
+    <string name="evaluate_student">تقييم الطلاب</string>
+    <string name="name">الاسم الكامل</string>
+    <string name="grade">الصف</string>
+    <string name="section">الشعبة</string>
+    <string name="label">وصف التقيم</string>
+
+
+</resources>
